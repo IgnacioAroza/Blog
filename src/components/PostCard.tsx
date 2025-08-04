@@ -53,14 +53,22 @@ export default function PostCard({ post, postImageUrl }: PostCardProps) {
       {/* Featured Image */}
       {postImageUrl && (
         <figure className="space-y-2">
-          <Image
-            src={postImageUrl}
-            alt={post.image?.alt || post.title}
-            className="w-full aspect-video rounded-xl object-cover"
-            width={800}
-            height={450}
-            priority
-          />
+          <div className="flex justify-center items-center bg-zinc-900/50 rounded-xl overflow-hidden" style={{ maxHeight: '24rem' }}>
+            <Image
+              src={postImageUrl}
+              alt={post.image?.alt || post.title}
+              className="max-w-full max-h-full object-contain"
+              width={800}
+              height={450}
+              priority
+              style={{
+                width: 'auto',
+                height: 'auto',
+                maxWidth: '100%',
+                maxHeight: '24rem'
+              }}
+            />
+          </div>
           {post.image?.caption && (
             <figcaption className="text-sm text-zinc-500 text-center italic">
               {post.image.caption}

@@ -55,7 +55,11 @@ export default async function PostList() {
                         alt={post.image?.alt || post.title}
                         width={400}
                         height={200}
-                        className="w-full h-32 md:h-28 object-cover rounded-lg hover:opacity-90 transition-opacity cursor-pointer"
+                        className="w-full h-32 md:h-28 object-contain bg-zinc-900/50 rounded-lg hover:opacity-90 transition-opacity cursor-pointer"
+                        style={{
+                          maxHeight: '7rem', // 112px para md:h-28
+                          objectFit: 'contain'
+                        }}
                       />
                     </Link>
                   </div>

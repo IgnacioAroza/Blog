@@ -17,20 +17,26 @@ interface ImageBlockProps {
 export default function ImageBlock({ value }: ImageBlockProps) {
   const { asset, caption, alt } = value;
   
-  const imageUrl = urlFor(asset)?.width(800).height(450).url();
+  // Generar imagen optimizada sin forzar dimensiones específicas
+  const imageUrl = urlFor(asset)?.width(800).url();
   
   if (!imageUrl) return null;
 
   return (
     <figure className="my-8 space-y-3">
-      <div className="relative overflow-hidden rounded-lg">
+      <div className="relative overflow-hidden rounded-lg bg-zinc-900/50 flex items-center justify-center">
         <Image
           src={imageUrl}
           alt={alt || caption || 'Image'}
           width={800}
-          height={450}
-          className="w-full h-auto object-cover"
+          height={400}
+          className="w-full h-auto max-h-96 object-contain"
           sizes="(max-width: 768px) 100vw, 800px"
+          style={{
+            maxHeight: '24rem', // 384px
+            width: 'auto',
+            height: 'auto'
+          }}
         />
       </div>
       
